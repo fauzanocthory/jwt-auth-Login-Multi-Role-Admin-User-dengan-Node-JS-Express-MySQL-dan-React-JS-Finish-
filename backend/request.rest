@@ -1,0 +1,79 @@
+//Create a User
+POST http://localhost:5000/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "lukfi",
+    "email": "lukfi@gmail.com",
+    "password": "123456",
+    "confPassword": "123456",
+    "role": "user"
+}
+
+###
+// get all user
+GET http://localhost:5000/users
+
+###
+// get one user
+GET http://localhost:5000/users/12522t5yh3htehdt
+
+###
+// login user admin
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "admin@gmail.com",
+    "password": "123456"
+}
+
+###
+// login user biasa
+POST http://localhost:5000/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "email": "lukfi@gmail.com",
+    "password": "123456"
+}
+
+###
+// me
+GET http://localhost:5000/me
+
+###
+// logout
+DELETE http://localhost:5000/logout
+
+###
+// get all product
+GET http://localhost:5000/products
+
+###
+// get single product
+GET http://localhost:5000/products/10d2850a-358e-4045-a94f-a0b7481d7fee
+
+###
+// post data product
+POST http://localhost:5000/products HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Product 5",
+    "price": 997
+}
+
+###
+// update data product
+PATCH http://localhost:5000/products/8a5dfeb8-1eee-4304-a1db-0291a81bc92d HTTP/1.1
+Content-Type: application/json
+
+{
+    "name": "Product 5 updated",
+    "price": 997
+}
+
+###
+// update data product
+DELETE http://localhost:5000/products/10d2850a-358e-4045-a94f-a0b7481d7fee HTTP/1.1
