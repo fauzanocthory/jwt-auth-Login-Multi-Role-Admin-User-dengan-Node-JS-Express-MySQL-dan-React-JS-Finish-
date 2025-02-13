@@ -11,32 +11,36 @@ const initialState = {
 
 export const LoginUser = createAsyncThunk("user/LoginUser", async(user, thunkAPI) => {
     try {
-        const response = await axios.post('http://localhost:5000/login',{
+        const response = await axios.post(process.env.REACT_APP_API_URL+'/login',{
             email: user.email,
             password: user.password
         })
         return response.data
     } catch (error) {
         if(error.response) {
-            const message = error.response.data.msg
+            // MESSAGE UNTUK DITAMPILKAN DI CONSOLE LOG BROWSER
+            // const message = error.response.data.msg
+            const message = "Something Went Wrong!"
             return thunkAPI.rejectWithValue(message);
         }
     }
 })
 export const getMe = createAsyncThunk("user/getMe", async(_, thunkAPI) => {
     try {
-        const response = await axios.get('http://localhost:5000/me')
+        const response = await axios.get(process.env.REACT_APP_API_URL+'/me')
         return response.data
     } catch (error) {
         if(error.response) {
-            const message = error.response.data.msg
+            // MESSAGE UNTUK DITAMPILKAN DI CONSOLE LOG BROWSER
+            // const message = error.response.data.msg
+            const message = "Something Went Wrong!"
             return thunkAPI.rejectWithValue(message);
         }
     }
 })
 
 export const LogOut = createAsyncThunk("user/LogOut", async() => {
-       await axios.delete('http://localhost:5000/logout')
+       await axios.delete(process.env.REACT_APP_API_URL+'/logout')
 })
 
 export const authSlice = createSlice({
