@@ -12,7 +12,7 @@ const FormEditProduct = () => {
     useEffect(()=> {
         const getProductById = async ()=> {
             try {
-                const response = await axios.get(`http://localhost:5000/products/${id}`)
+                const response = await axios.get(process.env.REACT_APP_API_URL+'/products/'+id)
                 setName(response.data.name)
                 setPrice(response.data.price)
             } catch (error) {
@@ -27,7 +27,7 @@ const FormEditProduct = () => {
     const updateProduct = async (e) => {
         e.preventDefault()
         try {
-            await axios.patch(`http://localhost:5000/products/${id}`, {
+            await axios.patch(process.env.REACT_APP_API_URL+'/products/'+id, {
                 name: name,
                 price: price
             })
