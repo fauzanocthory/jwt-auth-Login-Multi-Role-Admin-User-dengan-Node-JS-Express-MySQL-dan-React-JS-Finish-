@@ -10,6 +10,7 @@ import AuthRoute from "./routes/AuthRoutes.js"
 dotenv.config()
 
 const app = express()
+app.use(express.json())
 
 const sessionStore = SequelizeStore(session.Store)
 const store = new sessionStore({
@@ -17,10 +18,19 @@ const store = new sessionStore({
 })
 // SEMICOLON ; ADA KARENA BEBERAPA Error, 
 // SOLUSI ADA DI https://github.com/expressjs/express/issues/3515#issuecomment-353738007
-
+store.sync();
+db.sync();
 // ;(async()=> {
-//     await db.sync();
-// })();
+//      await db.sync();
+// }()
+// async ()=> await db.sync();
+
+app.use(cors({
+    credentials: true,
+    origin: 'http://192.168.100.90:3000'
+}))
+
+
 
 // ^^^^^^^^^^^^
 // UNTUK MEMBUAT TABLE PADA DATABASE
@@ -34,12 +44,6 @@ app.use(session({
     }
 }))
 
-app.use(cors({
-    credentials: true,
-    origin: 'http://localhost:3000'
-}))
-
-app.use(express.json())
 app.use(UserRoute)
 app.use(ProductRoute)
 app.use(AuthRoute)
